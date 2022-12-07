@@ -9,7 +9,7 @@ jobs:
 
       - name: echo event
         run: 'echo "payload: ${{ toJson(github.event) }}"'
-        
+
       - name: create file
         run: 'touch somefile.txt'
 
@@ -34,13 +34,12 @@ jobs:
         uses: actions/download-artifact@v3
 
       - name: list artifacts
-        run: ls -a
+        run: ls -aR
        
       - name: download artifacts
         uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: somefile.txt
 
       - name: see data
-        run: cat somefile.txt     
+        run: cat my-artifact/somefile.txt     
