@@ -1,0 +1,19 @@
+name: workflow to build the backend artifacts
+on:
+  push:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: create file
+        run: 'touch somefile.txt'
+
+      - name: append data
+        run: 'echo "test" > somefile.txt'
+
+      - name: see data
+        run: cat somefile.txt
+
+      
