@@ -10,20 +10,27 @@ jobs:
       - name: echo event
         run: 'echo "payload: ${{ toJson(github.event) }}"'
 
+      - name: create folder
+        run: 'mkdir testfolder'
+
       - name: create file
-        run: 'touch somefile.txt'
+        run: |
+          touch testfolder/somefile1.txt
+          touch testfolder/somefile2.txt
 
       - name: append data
-        run: 'echo "test" > somefile.txt'
+        run: |
+          echo "test1" > testfolder/somefile1.txt
+          echo "test2" > testfolder/somefile2.txt
 
       - name: see data
-        run: cat somefile.txt
+        run: cat testfolder/somefile1.txt
 
       - name: save artifacts
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: somefile.txt
+          path: ./testfolder
 
   job2:
     runs-on: ubuntu-latest
@@ -42,4 +49,4 @@ jobs:
           name: my-artifact
 
       - name: see data
-        run: cat my-artifact/somefile.txt     
+        run: cat my-artifact/somefile2.txt     
