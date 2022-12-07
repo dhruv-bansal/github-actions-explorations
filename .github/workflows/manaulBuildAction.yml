@@ -5,7 +5,6 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-
     steps:
       - name: create file
         run: 'touch somefile.txt'
@@ -16,4 +15,21 @@ jobs:
       - name: see data
         run: cat somefile.txt
 
-      
+      - name: save artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: somefile.txt
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: download artifacts
+        uses: actions/download-artifact@master
+        with:
+          name: my-artifact
+          path: somefile.txt
+
+      - name: see data
+        run: cat somefile.txt     
