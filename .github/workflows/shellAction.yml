@@ -1,0 +1,23 @@
+name: simple shell actions workflow
+on: [push]
+jobs:
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: simple shell command
+        run: echo "hello world"
+      - name: multiple shell command
+        run: |
+          node -v
+          npm -v
+      - name: python command
+        id: pythoncommand
+        shell: python
+        run: |
+          import platform
+          print(platform.processor())
+          print(platform.processor())
+
+      - name: print step output
+        run: |
+          echo --${{ toJson(steps.pythoncommand) }}--

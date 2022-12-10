@@ -1,0 +1,6 @@
+{
+	"event_type": "puchecr",
+	"client_payload" : {
+		"debug": false
+	}
+}

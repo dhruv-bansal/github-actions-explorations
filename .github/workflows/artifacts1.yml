@@ -1,0 +1,14 @@
+name: artifacts poc
+
+on:
+  repository_dispatch:
+    types: [makeartifacts]
+
+jobs:
+  make-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        run: |
+          echo "something"

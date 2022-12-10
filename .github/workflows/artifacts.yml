@@ -1,0 +1,33 @@
+name: artifacts poc
+
+on:
+  repository_dispatch:
+    types: [makeartifacts]
+
+jobs:
+  make-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: Debug step - List files
+        if: github.event.client_payload.debug == true
+        run: |
+          pwd
+          ls -a
+
+      - name: Artifacting backend code
+        uses: actions/upload-artifact@v3 # TODO: see the performance with cache actions
+        with:
+          name: service1
+          if-no-files-found: error
+          path: Services/test-service1
+
+      - name: Artifacting backend code
+        uses: actions/upload-artifact@v3 # TODO: see the performance with cache actions
+        with:
+          name: service2
+          if-no-files-found: error
+          path: Services/test-service2
