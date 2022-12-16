@@ -54,7 +54,7 @@ jobs:
         uses: tj-actions/changed-files@v34
         with:
           files: |
-            Services/test service4
+            Services/test\ service4
 
       - name: Run if changed in service 4
         if: steps.changed-files-test-service4.outputs.any_changed
