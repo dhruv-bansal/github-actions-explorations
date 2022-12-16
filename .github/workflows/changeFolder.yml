@@ -8,11 +8,13 @@ on:
 
 jobs:
   change folder:
+
     runs-on: ubuntu-latest
+
     steps:
 
       - name: get changed folder
-      - uses: Stockopedia/action-get-changed-files@v1
+        uses: Stockopedia/action-get-changed-files@v1
         id: get_changed
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
