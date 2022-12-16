@@ -24,17 +24,17 @@ jobs:
       - name: echo
         run: echo ${{ steps.get_changed.outputs.changed }}
 
-      - name: If something changed in test-service-1 folder
-        id: changed-files-test-service4
-        uses: tj-actions/changed-files@v34
-        with:
-          files: Services/test service4
-
-      - name: If something changed in test-service-1 folder
+      - name: If something changed in test-service-3 folder
         id: changed-files-test-service3
         uses: tj-actions/changed-files@v34
         with:
           files: Services/test-service3
+
+      - name: If something changed in test-service-4 folder
+        id: changed-files-test-service4
+        uses: tj-actions/changed-files@v34
+        with:
+          files: Services/test service4
 
       - name: Run if changed in service 4
         if: steps.changed-files-test-service4.outputs.any_changed
