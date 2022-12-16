@@ -75,16 +75,16 @@ jobs:
 
       - name: echo variables
         run: |
-          echo "${{needs.change_folder.isFolder3Changed}}"
-          echo "${{needs.change_folder.isFolder4Changed}}"
+          echo "${{needs.change_folder.outputs.isFolder3Changed}}"
+          echo "${{needs.change_folder.outputs.isFolder4Changed}}"
 
       - name: Run action if changed in service 4
-        if: needs.change_folder.isFolder3Changed == 'true'
+        if: needs.change_folder.outputs.isFolder3Changed == 'true'
         run: |
           echo "changed in service 4"
 
       - name: Run action if changed in service 3
-        if: needs.change_folder.isFolder4Changed == 'true'
+        if: needs.change_folder.outputs.isFolder4Changed == 'true'
         run: |
           echo "changed in service 3"
 
