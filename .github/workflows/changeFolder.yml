@@ -126,6 +126,6 @@ jobs:
           echo "changed in service 2"
 
       - name: Run action if changed in service 1
-        if: needs.change_folder.outputs.isFolder4Changed == 'true'
+        if: needs.change_folder.outputs.isFolder1Changed == 'true'
         run: |
           echo "changed in service 1"
