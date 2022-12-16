@@ -1,5 +1,8 @@
+
 name: simple shell actions workflow
+
 on: [push]
+
 jobs:
   run-shell-command:
     runs-on: ubuntu-latest
@@ -20,4 +23,4 @@ jobs:
 
       - name: print step output
         run: |
-          echo --${{ toJson(steps.pythoncommand) }}--
+          echo ${{ toJson(steps.pythoncommand) }}
