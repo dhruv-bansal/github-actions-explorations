@@ -73,6 +73,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: echo variables
+        run: |
+          echo "${{needs.change_folder.isFolder3Changed}}"
+          echo "${{needs.change_folder.isFolder4Changed}}"
+
       - name: Run action if changed in service 4
         if: needs.change_folder.isFolder3Changed == 'true'
         run: |
