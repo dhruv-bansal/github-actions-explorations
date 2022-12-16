@@ -10,9 +10,7 @@ on:
 
 jobs:
   change_folder:
-
     runs-on: ubuntu-latest
-
     steps:
 
       - uses: actions/checkout@v3
@@ -63,3 +61,19 @@ jobs:
         if: steps.changed-files-test-service3.outputs.any_changed == 'true'
         run: |
           echo "changed in service 3"
+
+job:
+  run-action:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Run action if changed in service 4
+        if: steps.changed-files-test-service4.outputs.any_changed == 'true'
+        run: |
+          echo "changed in service 4"
+
+      - name: Run action if changed in service 3
+        if: steps.changed-files-test-service3.outputs.any_changed == 'true'
+        run: |
+          echo "changed in service 3"
+
