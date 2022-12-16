@@ -1,0 +1,21 @@
+name: workflow to build the backend artifacts
+on:
+  push:
+    paths:
+      - 'Services/**'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: get changed folder
+      - uses: Stockopedia/action-get-changed-files@v1
+        id: get_changed
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          foldersOnly: true
+          format: json
+
+      - name: echo
+        run: echo ${{ steps.get_changed.outputs.changed }}
