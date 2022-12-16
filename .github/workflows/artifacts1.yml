@@ -1,4 +1,4 @@
-name: artifacts poc
+name: artifacts poc 1
 
 on:
   repository_dispatch:

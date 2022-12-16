@@ -1,4 +1,6 @@
+
 name: workflow to build the backend artifacts
+
 on:
   push:
 
@@ -11,7 +13,11 @@ jobs:
         run: 'echo "payload: ${{ toJson(github.event) }}"'
 
       - name: create folder
-        run: 'mkdir testfolder'
+        run: |
+          mkdir testfolder
+          mkdir testfolder/insidefolder
+          touch testfolder/insidefolder/somefileinside.txt
+
 
       - name: create file
         run: |
@@ -50,3 +56,7 @@ jobs:
 
       - name: see data
         run: cat my-artifact/somefile2.txt     
+
+
+      - name: list current directory
+        run: pwd     

@@ -1,6 +1,7 @@
 {
-	"event_type": "puchecr",
+	"event_type": "makeartifacts",
 	"client_payload" : {
-		"debug": false
+		"debug": false,
+		"artifact-name": "service1"
 	}
 }

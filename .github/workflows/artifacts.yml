@@ -1,3 +1,4 @@
+
 name: artifacts poc
 
 on:
@@ -31,3 +32,8 @@ jobs:
           name: service2
           if-no-files-found: error
           path: Services/test-service2
+
+      - name: download123 ${{ github.event.client_payload.artifact-name }} artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ github.event.client_payload.artifact-name }}
