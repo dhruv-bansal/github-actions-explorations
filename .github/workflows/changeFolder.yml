@@ -9,6 +9,7 @@ on:
       - 'Services/**'
 
 jobs:
+
   change_folder:
     runs-on: ubuntu-latest
     steps:
@@ -62,18 +63,23 @@ jobs:
         run: |
           echo "changed in service 3"
 
+
+    outputs:
+      isFolder3Changed: ${{ steps.changed-files-test-service3.outputs.any_changed }}
+      isFolder4Changed: ${{ steps.changed-files-test-service4.outputs.any_changed }}
+
   run-action:
-    needs: [change_folder]
+    needs: change_folder
     runs-on: ubuntu-latest
     steps:
 
       - name: Run action if changed in service 4
-        if: steps.changed-files-test-service4.outputs.any_changed == 'true'
+        if: needs.change_folder.isFolder3Changed == 'true'
         run: |
           echo "changed in service 4"
 
       - name: Run action if changed in service 3
-        if: steps.changed-files-test-service3.outputs.any_changed == 'true'
+        if: needs.change_folder.isFolder4Changed == 'true'
         run: |
           echo "changed in service 3"
 
