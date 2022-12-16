@@ -1,5 +1,5 @@
 
-name: workflow to build the backend artifacts
+name: workflow get changed folder on push action
 
 on:
   push:
