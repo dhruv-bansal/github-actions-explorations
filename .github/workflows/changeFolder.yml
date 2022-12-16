@@ -63,6 +63,7 @@ jobs:
           echo "changed in service 3"
 
   run-action:
+    needs: [change_folder]
     runs-on: ubuntu-latest
     steps:
 
