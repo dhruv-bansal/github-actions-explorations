@@ -15,8 +15,6 @@ jobs:
     steps:
 
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
 
       - name: get changed folder
         uses: Stockopedia/action-get-changed-files@v1
@@ -53,6 +51,21 @@ jobs:
           files: |
             Services/test\ service4
 
+      - name: If something changed in test-service-1 folder
+        id: changed-files-test-service1
+        uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            Services/test-service1
+            
+
+      - name: If something changed in test-service-2 folder
+        id: changed-files-test-service2
+        uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            Services/test-service2
+
       - name: Run if changed in service 4
         if: steps.changed-files-test-service4.outputs.any_changed == 'true'
         run: |
@@ -63,10 +76,21 @@ jobs:
         run: |
           echo "changed in service 3"
 
+      - name: Run if changed in service 2
+        if: steps.changed-files-test-service2.outputs.any_changed == 'true'
+        run: |
+          echo "changed in service 2"
+
+      - name: Run if changed in service 1
+        if: steps.changed-files-test-service1.outputs.any_changed == 'true'
+        run: |
+          echo "changed in service 1"
 
     outputs:
       isFolder3Changed: ${{ steps.changed-files-test-service3.outputs.any_changed }}
       isFolder4Changed: ${{ steps.changed-files-test-service4.outputs.any_changed }}
+      isFolder2Changed: ${{ steps.changed-files-test-service2.outputs.any_changed }}
+      isFolder1Changed: ${{ steps.changed-files-test-service1.outputs.any_changed }}
 
   run-action:
     needs: change_folder
@@ -88,3 +112,12 @@ jobs:
         run: |
           echo "changed in service 3"
 
+      - name: Run action if changed in service 2
+        if: needs.change_folder.outputs.isFolder2Changed == 'true'
+        run: |
+          echo "changed in service 2"
+
+      - name: Run action if changed in service 1
+        if: needs.change_folder.outputs.isFolder4Changed == 'true'
+        run: |
+          echo "changed in service 1"
