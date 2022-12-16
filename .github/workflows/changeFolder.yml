@@ -2,6 +2,8 @@
 name: workflow get changed folder on push action
 
 on:
+  repository_dispatch:
+    types: [ build ]
   push:
     branches:
       - main
@@ -111,7 +113,7 @@ jobs:
           echo "${{needs.change_folder.outputs.isFolder4Changed}}"
 
       - name: Run action if changed in service 4
-        if: needs.change_folder.outputs.isFolder3Changed == 'true'
+        if: (github.event.client_payload.change == true) || (needs.change_folder.outputs.isFolder3Changed == 'true')
         run: |
           echo "changed in service 4"
 
