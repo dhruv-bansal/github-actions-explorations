@@ -24,6 +24,10 @@ jobs:
       - name: echo
         run: echo ${{ steps.get_changed.outputs.changed }}
 
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
       - name: If something changed in test-service-3 folder
         id: changed-files-test-service3
         uses: tj-actions/changed-files@v34
