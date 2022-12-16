@@ -109,16 +109,18 @@ jobs:
 
       - name: echo variables
         run: |
-          echo "${{needs.change_folder.outputs.isFolder3Changed}}"
-          echo "${{needs.change_folder.outputs.isFolder4Changed}}"
+          echo "isFolder4Changed ${{needs.change_folder.outputs.isFolder4Changed}}"
+          echo "isFolder3Changed ${{needs.change_folder.outputs.isFolder3Changed}}"
+          echo "isFolder2Changed ${{needs.change_folder.outputs.isFolder2Changed}}"
+          echo "isFolder1Changed ${{needs.change_folder.outputs.isFolder1Changed}}"
 
       - name: Run action if changed in service 4
-        if: (github.event.client_payload.change == true) || (needs.change_folder.outputs.isFolder3Changed == 'true')
+        if: (github.event.client_payload.change == true) || (needs.change_folder.outputs.isFolder4Changed == 'true')
         run: |
           echo "changed in service 4"
 
       - name: Run action if changed in service 3
-        if: needs.change_folder.outputs.isFolder4Changed == 'true'
+        if: needs.change_folder.outputs.isFolder3Changed == 'true'
         run: |
           echo "changed in service 3"
 
