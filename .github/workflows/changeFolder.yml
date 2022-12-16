@@ -3,6 +3,8 @@ name: workflow get changed folder on push action
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'Services/**'
 
@@ -13,20 +15,20 @@ jobs:
 
     steps:
 
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
       - name: get changed folder
         uses: Stockopedia/action-get-changed-files@v1
         id: get_changed
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          foldersOnly: false
+          foldersOnly: true
           format: json
 
       - name: echo
         run: echo ${{ steps.get_changed.outputs.changed }}
-
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
 
       - name: Get changed files
         id: changed-files
@@ -37,6 +39,8 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
+          
+          echo ${{ toJson(steps.changed-files.outputs) }} 
 
       - name: If something changed in test-service-3 folder
         id: changed-files-test-service3
