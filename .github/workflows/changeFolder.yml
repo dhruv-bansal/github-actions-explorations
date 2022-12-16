@@ -7,7 +7,7 @@ on:
       - 'Services/**'
 
 jobs:
-  change folder:
+  change_folder:
 
     runs-on: ubuntu-latest
 
