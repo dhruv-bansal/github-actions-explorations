@@ -40,8 +40,6 @@ jobs:
             echo "$file was changed"
           done
           
-          echo ${{ toJson(steps.changed-files.outputs) }} 
-
       - name: If something changed in test-service-3 folder
         id: changed-files-test-service3
         uses: tj-actions/changed-files@v34
@@ -57,11 +55,11 @@ jobs:
             Services/test\ service4
 
       - name: Run if changed in service 4
-        if: steps.changed-files-test-service4.outputs.any_changed
+        if: steps.changed-files-test-service4.outputs.any_changed == 'true'
         run: |
           echo "changed in service 4"
 
       - name: Run if changed in service 3
-        if: steps.changed-files-test-service3.outputs.any_changed
+        if: steps.changed-files-test-service3.outputs.any_changed == 'true'
         run: |
           echo "changed in service 3"
