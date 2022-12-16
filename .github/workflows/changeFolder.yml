@@ -45,9 +45,9 @@ jobs:
       - name: Run if changed in service 4
         if: steps.changed-files-test-service4.outputs.any_changed
         run: |
-          echo "changed in service 4
+          echo "changed in service 4"
 
       - name: Run if changed in service 3
         if: steps.changed-files-test-service3.outputs.any_changed
         run: |
-          echo "changed in service 3
+          echo "changed in service 3"
