@@ -7,8 +7,15 @@ on:
 jobs:
   make-artifacts:
     runs-on: ubuntu-latest
-
     steps:
       - name: checkout code
         run: |
           echo "something"
+
+  conditional-job:
+    runs-on: ubuntu-latest
+    if: (github.event.client_payload.condition1 == true) || (github.event.client_payload.condition2 == true)
+    steps:
+      - name: check or condition
+        run: |
+          echo "condition evaluated"
