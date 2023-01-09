@@ -15,6 +15,7 @@ jobs:
         run: |
           echo "hello world"
           echo "github sha: ${GITHUB_SHA}"
+          echo "github sha short: ${GITHUB_SHA:0:8}"
 
       - name: multiple shell command
         run: |
@@ -29,4 +30,4 @@ jobs:
 
       - name: print step output
         run: |
-          echo ${{ toJson(steps.pythoncommand) }}
+          echo ${{ toJson(steps.pythoncommand.outputs) }}
