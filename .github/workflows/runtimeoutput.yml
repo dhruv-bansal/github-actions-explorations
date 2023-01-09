@@ -1,0 +1,28 @@
+
+name: simple actions to test output
+
+on:
+  push:
+  repository_dispatch:
+    types: [getoutput]
+
+jobs:
+  test-job-getoutput:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.test }} #this statement will help to export the step output variable outside the job
+    steps:
+      - id: step1
+        run: echo "test=settingoutputfromstep" >> $GITHUB_OUTPUT #this >> $GITHUB_OUTPUT will output the variable in this step
+
+      - id: step2
+        run: |
+          echo ${{ steps.step1.outputs.test }}
+
+  test-job-outputvar:
+    runs-on: ubuntu-latest
+    needs: [test-job-getoutput]
+    steps:
+      - id: step3
+        run: echo ${{needs.test-job-getoutput.outputs.output1}}
+
