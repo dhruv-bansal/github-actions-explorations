@@ -2,6 +2,8 @@
 	"event_type": "makeartifacts",
 	"client_payload" : {
 		"debug": false,
-		"artifact-name": "service1"
+		"artifact-name": "service1",
+		"condition1": true,
+		"condition2" : true
 	}
 }

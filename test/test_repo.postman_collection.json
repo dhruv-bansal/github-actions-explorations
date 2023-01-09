@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "874d897e-4786-4507-abbf-d88035ce3e92",
+		"name": "test_repo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24776393"
+	},
+	"item": [
+		{
+			"name": "get-artifact-size",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/repos/dhruv-bansal/test_repo/actions/artifacts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"dhruv-bansal",
+						"test_repo",
+						"actions",
+						"artifacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dispatch-event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.github+json\"",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic  OmdocF9mbmRNbFlLckRvd1JtNHp3R29ndEhyRlo2NlBLRFY0R0pDMlg=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"event_type\":\"build\",\n   \"client_payload\":{\n      \"debug\":true,\n      \"user-service\":{\n         \"build\":true\n      },\n      \"notification-service\":{\n         \"build\":false\n      }\n   }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.github.com/repos/dhruv-bansal/test_repo/dispatches",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"dhruv-bansal",
+						"test_repo",
+						"dispatches"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
