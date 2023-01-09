@@ -1,3 +1,5 @@
 act push --artifact-server-path /tmp/artifacts
 
 act -j conditional-job -e ./test/repository_dispatch_event.json
+
+act -j test-shell-command

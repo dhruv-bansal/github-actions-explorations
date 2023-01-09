@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: simple shell command
         run: |
+          docker image ls
+
+      - name: simple shell command
+        run: |
           echo "hello world"
           echo "github sha: ${GITHUB_SHA}"
           echo "github sha short: ${GITHUB_SHA:0:8}"
@@ -31,3 +35,13 @@ jobs:
       - name: print step output
         run: |
           echo ${{ toJson(steps.pythoncommand.outputs) }}
+
+  test-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: simple shell command
+        run: |
+          docker image ls
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+          echo "GITHUB_SHA_SHORT: ${GITHUB_SHA:0:8}"
+          docker tag product-service:latest "${ECR_REGISTRY}/${PRODUCT_SERVICE_ECR_REPO_NAME}"
