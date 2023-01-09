@@ -1,14 +1,21 @@
 
 name: simple shell actions workflow
 
-on: [push]
+on:
+  push:
+  repository_dispatch:
+    types: [shellaction]
+
 
 jobs:
   run-shell-command:
     runs-on: ubuntu-latest
     steps:
       - name: simple shell command
-        run: echo "hello world"
+        run: |
+          echo "hello world"
+          echo "github sha: ${github.sha}"
+
       - name: multiple shell command
         run: |
           node -v
